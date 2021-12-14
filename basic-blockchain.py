@@ -16,7 +16,7 @@ class Block:
 
 #creates the genesis block 
 	def createGenesis():
-		#Must match previous def __init__(self, ...) / constructor declared order, otherwise wont work as intended, prints counting too
+		#Must match previous def __init__(self, ...) / constructor declared order , otherwise wont work as intended, prints counting too
 		return Block(0, None, 0x0, datetime.datetime.now()) #Constructor order: 'blockID', 'data', 'previousHash', 'timestamp'
 
 
@@ -24,8 +24,7 @@ class Block:
 	def hashBlock(self):
 		
 		h = hashlib.sha256()
-		h.update(str(self.blockID).encode() + str(self.data).encode() +
-			str(self.previousHash).encode() + str(self.timestamp).encode())
+		h.update(str(self.blockID).encode() + str(self.data).encode() + str(self.previousHash).encode() + str(self.timestamp).encode())
         
 		return h.hexdigest()
 
@@ -52,19 +51,24 @@ class Blockchain:
 
 		return Block(next_blockID, next_data, next_hash, next_timestamp) #Must match the blockchain order
 	
-
 #generates the blockchain, given a number of blocks
-	numberBlocks = 5
+	numberBlocks = input('Insert blockchain size: ')
 
-	for n in range (0, numberBlocks):
-		
-		addBlock = nextBlock(previousBlock)
-		blockchain.append(addBlock)
-		previousBlock = addBlock
+	while numberBlocks.isdigit() == False or numberBlocks == '0':
+		numberBlocks = input('\nInsert blockchain size: ')
+	
+	else:
+		numberBlocks = int(numberBlocks)
 
-		print("Block ID: {}".format(addBlock.blockID))
-		print("Timestamp: {}".format(addBlock.timestamp))
-		print("Data: {}".format(addBlock.data))
-		print("Previous Block Hash: {}".format(addBlock.previousHash))
-		print("Current Block Hash: {}".format(addBlock.hash))
-		print("\n")
+		for n in range (0, numberBlocks):
+			
+			addBlock = nextBlock(previousBlock)
+			blockchain.append(addBlock)
+			previousBlock = addBlock
+
+			print("\nBlock ID: {}".format(addBlock.blockID))
+			print("Timestamp: {}".format(addBlock.timestamp))
+			print("Data: {}".format(addBlock.data))
+			print("Previous Block Hash: {}".format(addBlock.previousHash))
+			print("Current Block Hash: {}".format(addBlock.hash))
+			print("\n")

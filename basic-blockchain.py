@@ -16,7 +16,7 @@ class Block:
 
 #creates the genesis block 
 	def createGenesis():
-		#Must match previous def __init__(self, ...) / constructor declared order, otherwise wont work as intended, also caution when printing
+		#Must match previous def __init__(self, ...) / constructor declared order, otherwise wont work as intended, prints counting too
 		return Block(0, None, 0x0, datetime.datetime.now()) #Constructor order: 'blockID', 'data', 'previousHash', 'timestamp'
 
 

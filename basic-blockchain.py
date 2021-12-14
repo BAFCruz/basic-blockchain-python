@@ -51,7 +51,7 @@ class Blockchain:
 
 		return Block(next_blockID, next_data, next_hash, next_timestamp) #Must match the blockchain order
 	
-#generates the blockchain, given a number of blocks
+#generates the blockchain, given a number of blocks || only ints will be valid else will keep asking for a value
 	numberBlocks = input('Insert blockchain size: ')
 
 	while numberBlocks.isdigit() == False or numberBlocks == '0':
